@@ -18,7 +18,6 @@ class LiveStreamFragment : Fragment() {
     ): View {
         binding = FragmentLiveStreamBinding.inflate(layoutInflater)
         // Inflate the layout for this fragment
-        Toast.makeText(context,"live stream",Toast.LENGTH_SHORT).show()
         return binding.root
     }
 }
