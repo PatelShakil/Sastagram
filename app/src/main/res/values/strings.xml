@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Genie</string>
+    <string name="enter_your_registered_email">Enter your registered email</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="enter_your_password_confirm">Enter your password confirm</string>
+    <string name="login">Login</string>
+    <string name="click_for_signup">Click for signup</string>
+    <string name="enter_unique_username">Enter unique username</string>
+    <string name="signup">Signup</string>
+    <string name="already_have_account">Already have account</string>
+    <string name="main_industries">Main Industries</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
