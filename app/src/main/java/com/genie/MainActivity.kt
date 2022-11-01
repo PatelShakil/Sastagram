@@ -39,4 +39,8 @@ class MainActivity : AppCompatActivity() {
         binding.mainAppsRv.adapter = mainappsadapter
         binding.pinnedAppsRv.adapter = pinnedappsadapter
     }
+
+    override fun onBackPressed() {
+        finishAffinity()
+    }
 }
