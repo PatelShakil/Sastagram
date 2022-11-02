@@ -20,4 +20,6 @@
     <string name="add_phone_no">Add Phone no</string>
     <string name="add_your_name">Add Your Name</string>
     <string name="add_caption">Add Caption</string>
+    <string name="upload">Upload</string>
+    <string name="caption">Caption</string>
 </resources>

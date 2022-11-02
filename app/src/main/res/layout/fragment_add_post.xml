@@ -28,5 +28,13 @@
     android:maxLines="5"
     android:layout_marginTop="10dp"
     android:layout_marginHorizontal="3dp"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/post_upload_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        app:cornerRadius="8dp"
+        android:layout_marginHorizontal="3dp"
+        android:text="@string/upload"/>
 
 </LinearLayout>

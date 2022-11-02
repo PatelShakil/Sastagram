@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.genie.R
 import com.genie.account.UserModel
 import com.genie.databinding.FragmentProfileBinding
+import com.genie.social_media.adapters.ProfilePostAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -53,6 +54,27 @@ class ProfileFragment : Fragment() {
         binding.addPost.setOnClickListener {
             parentFragmentManager.beginTransaction().replace(R.id.main_container,AddPostFragment(),"add_post").addToBackStack("add_post").commit()
         }
+        var post_list = ArrayList<String>()
+        var post_adapter = ProfilePostAdapter(context?.applicationContext!!,post_list)
+        binding.uploadedPostRv.adapter = post_adapter
+        database.reference.child("social_media")
+            .child("posts")
+            .addValueEventListener(object :ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()){
+                        for(snapshot1 in snapshot.children){
+                            if (snapshot1.child("post_author").value.toString() == auth.uid.toString()){
+                                post_list.add(0,snapshot1.child("post_url").value.toString())
+                            }
+                        }
+                        post_adapter.notifyDataSetChanged()
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                }
+
+            })
         return binding.root
     }
 }

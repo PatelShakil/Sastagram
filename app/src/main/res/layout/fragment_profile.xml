@@ -106,6 +106,14 @@
     android:text="@string/edit_profile"
     android:textAllCaps="false"
     android:layout_marginHorizontal="5dp"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/uploaded_post_rv"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/sample_social_post_profile"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="3"/>
     </LinearLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_post"

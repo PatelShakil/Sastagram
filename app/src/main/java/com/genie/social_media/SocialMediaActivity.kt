@@ -15,7 +15,7 @@ class SocialMediaActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.navigation.selectedItemId = R.id.social_media_home
-        supportFragmentManager.beginTransaction().replace(R.id.main_container,HomeFragment()).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.main_container,HomeFragment(),"home").addToBackStack("home").commit()
         binding.navigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.social_media_live -> {
