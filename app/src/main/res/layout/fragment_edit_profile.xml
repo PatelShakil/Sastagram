@@ -80,6 +80,5 @@
             android:layout_gravity="end"
             android:src="@drawable/check_icon"
             app:tint="@color/green" />
-
     </LinearLayout>
 </ScrollView>
