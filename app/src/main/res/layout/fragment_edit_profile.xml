@@ -16,11 +16,23 @@
         android:layout_height="280dp"
         android:src="@drawable/logo"/>
 <TextView
-    android:id="@+id/edit_name"
+    android:id="@+id/username"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="@string/app_name"
     android:textStyle="bold"/>
+        <EditText
+            android:id="@+id/edit_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/add_your_name"/>
+        <ImageView
+            android:id="@+id/edit_name_check"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="end"
+            android:src="@drawable/check_icon"
+            app:tint="@color/green" />
     <EditText
         android:id="@+id/edit_bio"
         android:layout_width="match_parent"

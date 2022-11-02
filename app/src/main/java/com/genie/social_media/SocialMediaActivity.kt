@@ -1,15 +1,12 @@
 package com.genie.social_media
 
-import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.ContextMenu
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.genie.R
 import com.genie.databinding.ActivitySocialMediaBinding
 import com.genie.social_media.fragments.*
+
 class SocialMediaActivity : AppCompatActivity() {
     private lateinit var binding:ActivitySocialMediaBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,27 +20,28 @@ class SocialMediaActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.social_media_live -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_container, LiveStreamFragment()).commit()
+                        .replace(R.id.main_container, LiveStreamFragment(),"live").addToBackStack("live").commit()
                 }
                 R.id.social_media_search -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_container, SearchFragment()).commit()
+                        .replace(R.id.main_container, SearchFragment(),"search").addToBackStack("search").commit()
                 }
                 R.id.social_media_home -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_container, HomeFragment()).commit()
+                        .replace(R.id.main_container, HomeFragment(),"home").addToBackStack("home").commit()
                 }
                 R.id.social_media_chats -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_container, ChatsFragment()).commit()
+                        .replace(R.id.main_container, ChatsFragment(),"chats").addToBackStack("chats").commit()
                 }
                 R.id.social_media_profile -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_container, ProfileFragment()).commit()
+                        .replace(R.id.main_container, ProfileFragment(),"profile").addToBackStack("profile").commit()
                 }
             }
             true
         }
+
 //        binding.navigationNv.add(MeowBottomNavigation.Model(1,R.drawable.live))
 //        binding.navigationNv.add(MeowBottomNavigation.Model(2,R.drawable.search_icon))
 //        binding.navigationNv.add(MeowBottomNavigation.Model(3,R.drawable.home_icon))
@@ -76,10 +74,32 @@ class SocialMediaActivity : AppCompatActivity() {
 //        }
 //        binding.navigationNv.show(3,true)
 
+//        if (supportFragmentManager.findFragmentByTag("home")?.isVisible!!) {
+//            binding.navigation.selectedItemId = R.id.social_media_home
+//        }
+//        else if (supportFragmentManager.findFragmentByTag("chats")?.isVisible!!){
+//            binding.navigation.selectedItemId = R.id.social_media_chats
+//        }
+//        else if (supportFragmentManager.findFragmentByTag("profile")?.isVisible!!){
+//            binding.navigation.selectedItemId = R.id.social_media_profile
+//        }
+//        else if (supportFragmentManager.findFragmentByTag("live")?.isVisible!!){
+//            binding.navigation.selectedItemId = R.id.social_media_live
+//        }
+//        else if (supportFragmentManager.findFragmentByTag("search")?.isVisible!!){
+//            binding.navigation.selectedItemId = R.id.social_media_search
+//        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
     }
+
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount > 0) {
+            supportFragmentManager.popBackStack()
+        } else {
+            super.onBackPressed();
+        }    }
 }

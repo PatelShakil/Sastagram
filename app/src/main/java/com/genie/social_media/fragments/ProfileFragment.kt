@@ -1,5 +1,6 @@
 package com.genie.social_media.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -47,8 +48,12 @@ class ProfileFragment : Fragment() {
 
             })
         binding.myProfileEditProfileBtn.setOnClickListener {
-            parentFragmentManager.beginTransaction().replace(R.id.main_container,EditProfileFragment()).commit()
+            parentFragmentManager.beginTransaction().replace(R.id.main_container,EditProfileFragment(),"edit_profile").addToBackStack("edit profile").commit()
+        }
+        binding.addPost.setOnClickListener {
+            parentFragmentManager.beginTransaction().replace(R.id.main_container,AddPostFragment(),"add_post").addToBackStack("add_post").commit()
         }
         return binding.root
     }
+
 }

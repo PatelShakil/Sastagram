@@ -107,4 +107,14 @@
     android:textAllCaps="false"
     android:layout_marginHorizontal="5dp"/>
     </LinearLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_post"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:foreground="@drawable/plus_icon"
+        android:backgroundTint="@color/primary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginBottom="60dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

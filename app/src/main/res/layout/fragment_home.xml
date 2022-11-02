@@ -6,6 +6,10 @@
     tools:context=".social_media.fragments.HomeFragment"
     tools:viewBinding="true"
     android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/feed_post_rv"
         android:layout_width="match_parent"
