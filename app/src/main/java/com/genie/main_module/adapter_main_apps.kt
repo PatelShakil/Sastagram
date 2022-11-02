@@ -11,8 +11,8 @@ import com.genie.databinding.SampleMainAppsBinding
 import com.genie.social_media.SocialMediaActivity
 
 class adapter_main_apps: RecyclerView.Adapter<adapter_main_apps.MainAppsViewHolder> {
-    lateinit var context:Context
-    lateinit var apps:ArrayList<String>
+    var context:Context
+    var apps:ArrayList<String>
 
     constructor(context: Context, apps: ArrayList<String>) : super() {
         this.context = context

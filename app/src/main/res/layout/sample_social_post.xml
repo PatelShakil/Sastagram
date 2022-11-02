@@ -22,10 +22,12 @@
         android:orientation="horizontal"
         android:layout_marginStart="3dp">
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/user_profile"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:src="@drawable/profile_icon"/>
         <ImageView
+            android:id="@+id/user_star"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:src="@drawable/star_icon"
@@ -33,6 +35,7 @@
             android:layout_marginStart="5dp"
             app:tint="@color/primary"/>
         <TextView
+            android:id="@+id/user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/app_name"
@@ -46,6 +49,7 @@
         android:backgroundTint="@color/primary"
         android:layout_marginHorizontal="3dp">
         <ImageView
+            android:id="@+id/user_post"
             android:layout_width="match_parent"
             android:layout_height="280dp"
             android:scaleType="centerCrop"
@@ -63,31 +67,72 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginHorizontal="3dp">
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@drawable/person_icon"/>
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2"/>
+                    android:layout_gravity="start"
+                    android:orientation="horizontal">
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/person_icon"/>
+                <TextView
+                    android:id="@+id/no_of_super_comments"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2"
+                    android:layout_gravity="center_vertical"/>
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:src="@drawable/star_icon"
                     app:tint="@color/primary"/>
                 <TextView
+                    android:id="@+id/user_post_rating_star"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="7/10"/>
+                    android:text="7/10"
+                    android:layout_gravity="center_vertical"/>
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:src="@drawable/person_icon"/>
                 <TextView
+                    android:id="@+id/no_of_donated_coins"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2"/>
+                    android:text="2"
+                    android:layout_gravity="center_vertical"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginRight="3dp"
+                    android:gravity="end">
+                <ImageView
+                    android:id="@+id/post_like_iv"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/filled_like_icon"/>
+                <TextView
+                    android:id="@+id/post_like_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2"
+                    android:layout_gravity="center_vertical"/>
+                <TextView
+                    android:id="@+id/post_comments"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Comment"
+                    android:layout_gravity="center_vertical"/>
+                    <ImageView
+                        android:id="@+id/post_share"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/share_icon"/>
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

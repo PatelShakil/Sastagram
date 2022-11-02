@@ -1,9 +1,11 @@
 package com.genie.social_media
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.ContextMenu
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import com.genie.R
 import com.genie.databinding.ActivitySocialMediaBinding

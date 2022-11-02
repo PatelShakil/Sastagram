@@ -11,4 +11,11 @@
     <string name="main_industries">Main Industries</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="bio">If your readers dont remember anything else about your bio, make sure they remember your name. For that reason, its a good idea for your first and last name to be the first two words of your professional bio. Even if your name is printed above this bio (hint: it should) this is a rare moment where its okay to be redundant</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="add_bio">Add bio</string>
+    <string name="add_date_of_birth">Add Date Of Birth</string>
+    <string name="private_information">Private Information</string>
+    <string name="email">email</string>
+    <string name="add_phone_no">Add Phone no</string>
 </resources>
