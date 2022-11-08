@@ -47,17 +47,14 @@ class AddPostFragment : Fragment() {
                     database.reference.child("social_media").child("posts")
                         .child(database.reference.push().key.toString())
                         .setValue(
-                            PostModel(
-                                database.reference.push().key.toString(),
-                                binding.postCaption.text.toString(),
+                            PostModel(binding.postCaption.text.toString(),
                                 auth.uid.toString(),
                                 encodedpost,
                                 Date().time,
-                                ""
+                                0
                             )
                         ).addOnCompleteListener {
                             if (it.isSuccessful) {
-                                database.reference.child("social_media").child("posts")
                                 Toast.makeText(context, "Post uploaded", Toast.LENGTH_SHORT).show()
                                 parentFragmentManager.beginTransaction()
                                     .replace(R.id.main_container, ProfileFragment(), "profile")

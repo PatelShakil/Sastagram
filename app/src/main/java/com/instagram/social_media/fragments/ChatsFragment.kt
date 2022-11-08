@@ -58,7 +58,7 @@ class ChatsFragment : Fragment() {
                     }
                 }
                 if (users_list.size > 0) {
-                    var users_adapter = ChatUsersAdapter(context?.applicationContext!!, users_list)
+                    var users_adapter = ChatUsersAdapter(users_list)
                     binding.chatUsersRv.adapter = users_adapter
                     users_adapter.notifyDataSetChanged()
                 }

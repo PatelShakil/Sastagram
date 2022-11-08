@@ -44,7 +44,7 @@ class ProfileFragment : Fragment() {
                     .addOnSuccessListener {
                         if (it.exists()){
                             binding.userMyProfileUserName.text = it["name"].toString()
-                            Glide.with(context?.applicationContext!!)
+                            Glide.with(binding.userMyProfilePic.context)
                                 .load(it["profile_pic"].toString())
                                 .placeholder(R.drawable.profile_icon)
                                 .into(binding.userMyProfilePic)
@@ -58,26 +58,8 @@ class ProfileFragment : Fragment() {
             parentFragmentManager.beginTransaction().replace(R.id.main_container,AddPostFragment(),"add_post").addToBackStack("add_post").commit()
         }
         var post_list = ArrayList<String>()
-        var post_adapter = ProfilePostAdapter(context?.applicationContext!!,post_list)
-        binding.uploadedPostRv.adapter = post_adapter
-        database.reference.child("social_media")
-            .child("posts")
-            .addValueEventListener(object :ValueEventListener{
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    if (snapshot.exists()){
-                        for(snapshot1 in snapshot.children){
-                            if (snapshot1.child("post_author").value.toString() == auth.uid.toString()){
-                                post_list.add(0,snapshot1.child("post_url").value.toString())
-                            }
-                        }
-                        post_adapter.notifyDataSetChanged()
-                    }
-                }
+        var post_adapter = ProfilePostAdapter(binding.uploadedPostRv.context,post_list)
 
-                override fun onCancelled(error: DatabaseError) {
-                }
-
-            })
         var query : Query = database.reference.child("social_media").child("posts")
             .orderByChild("post_author").equalTo(auth.uid)
         val options: FirebaseRecyclerOptions<PostModel> = FirebaseRecyclerOptions.Builder<PostModel>()
@@ -95,7 +77,8 @@ class ProfileFragment : Fragment() {
                 holder: ProfilePostViewHolder,
                 position: Int,
                 model: PostModel
-            ) {                 holder.binding.postUploaded.visibility = View.VISIBLE
+            ) {
+                    holder.binding.postUploaded.visibility = View.VISIBLE
                     holder.binding.postUploaded.setImageBitmap(Constants().decodeImage(model.post_url))
                     holder.binding.postUploaded.setOnClickListener {
                         var fg = PostViewFragment()
@@ -108,6 +91,57 @@ class ProfileFragment : Fragment() {
         }
         binding.uploadedPostRv.adapter = adapter
         adapter.startListening()
+        database.reference.child("users")
+            .child(auth.uid.toString())
+            .child(Constants().KEY_FOLLOWERS)
+            .addListenerForSingleValueEvent(object :ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    var list = ArrayList<String>()
+                    if (snapshot.exists()){
+                        for (i in snapshot.children){
+                            list.add(i.key.toString())
+                        }
+                        binding.followerCount.text = list.size.toString()
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {                }
+            })
+        database.reference.child("users")
+            .child(auth.uid.toString())
+            .child(Constants().KEY_FOLLOWING)
+            .addListenerForSingleValueEvent(object :ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    var list = ArrayList<String>()
+                    if (snapshot.exists()){
+                        for (i in snapshot.children){
+                            list.add(i.key.toString())
+                        }
+                        binding.followingCount.text = list.size.toString()
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {                }
+            })
+        var per_post_list = ArrayList<String>()
+        database.reference.child("social_media")
+            .child("posts")
+            .addValueEventListener(object :ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()){
+                        for(snapshot1 in snapshot.children){
+                            if (snapshot1.child("post_author").value.toString() == auth.uid.toString()){
+                                per_post_list.add(snapshot1.child("post_url").value.toString())
+                            }
+                        }
+                        binding.postCount.text = per_post_list.size.toString()
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                }
+
+            })
         return binding.root
     }
     class ProfilePostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){

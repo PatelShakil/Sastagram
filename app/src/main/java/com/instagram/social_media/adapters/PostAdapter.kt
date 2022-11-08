@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
@@ -77,6 +78,81 @@ class PostAdapter:RecyclerView.Adapter<PostAdapter.PostViewHolder> {
                         .into(holder.binding.currentUserProfile)
                 }
             }
+        holder.binding.postLikeCount.text = post.post_like.toString()
+        database.reference.child("social_media")
+            .child("posts")
+            .child(post.post_id)
+            .child("likes")
+            .child(auth.uid.toString())
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()){
+                        holder.binding.postLikeBtn.setBackgroundResource(R.drawable.ic_like_red)
+                    }
+                    else
+                        holder.binding.postLikeBtn.setBackgroundResource(R.drawable.ic_like)
+                }
+                override fun onCancelled(error: DatabaseError) {                    }
+
+            })
+        holder.binding.postLikeBtn.setOnClickListener {
+            database.reference.child("social_media")
+                .child("posts")
+                .child(post.post_id)
+                .child("likes")
+                .child(auth.uid.toString())
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.exists()){
+                            database.reference.child("social_media")
+                                .child("posts")
+                                .child(post.post_id)
+                                .child("likes")
+                                .child(auth.uid.toString())
+                                .setValue(null)
+                                .addOnSuccessListener {
+                                    database.reference.child("social_media")
+                                        .child("posts")
+                                        .child(post.post_id)
+                                        .child("post_like")
+                                        .setValue(post.post_like - 1)
+                                        .addOnSuccessListener {
+                                            holder.binding.postLikeBtn.setBackgroundResource(R.drawable.ic_like)
+                                        }
+                                }
+                        }else{
+                            database.reference.child("social_media")
+                                .child("posts")
+                                .child(post.post_id)
+                                .child("likes")
+                                .child(auth.uid.toString())
+                                .setValue(Date().time)
+                                .addOnSuccessListener {
+                                    database.reference.child("social_media")
+                                        .child("posts")
+                                        .child(post.post_id)
+                                        .child("post_like")
+                                        .setValue(post.post_like + 1)
+                                        .addOnSuccessListener {
+                                            holder.binding.postLikeBtn.setBackgroundResource(R.drawable.ic_like_red)
+                                        }
+                                }
+                        }
+                    }
+                    override fun onCancelled(error: DatabaseError) {                    }
+
+                })
+
+        }
+        holder.binding.addYourComment.doOnTextChanged { text, start, before, count ->
+            if(text != null && text.isNotEmpty())
+                holder.binding.sendPostComment.visibility = View.VISIBLE
+            else
+                holder.binding.sendPostComment.visibility = View.GONE
+        }
+        holder.binding.postSave.setOnClickListener {
+            holder.binding.postSave.setBackgroundResource(R.drawable.saved)
+        }
     }
 
     override fun getItemCount(): Int {
