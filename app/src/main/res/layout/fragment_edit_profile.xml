@@ -2,8 +2,9 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="10dp"
     tools:context=".social_media.fragments.EditProfileFragment">
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +16,15 @@
         android:id="@+id/edit_profile_pic"
         android:layout_width="match_parent"
         android:layout_height="280dp"
-        android:src="@drawable/logo"/>
+        android:src="@drawable/profile_icon"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/edit_profile_pic_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cornerRadius="15dp"
+            android:text="Upload Pic"
+            android:textAllCaps="false"
+            android:visibility="gone"/>
 <TextView
     android:id="@+id/username"
     android:layout_width="match_parent"
@@ -26,6 +35,7 @@
             android:id="@+id/edit_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textPersonName"
             android:hint="@string/add_your_name"/>
         <ImageView
             android:id="@+id/edit_name_check"
@@ -33,7 +43,8 @@
             android:layout_height="25dp"
             android:layout_gravity="end"
             android:src="@drawable/check_icon"
-            app:tint="@color/green" />
+            app:tint="@color/green"
+            android:visibility="gone"/>
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edit_bio"
         android:layout_width="match_parent"
@@ -45,7 +56,8 @@
             android:layout_height="25dp"
             android:layout_gravity="end"
             android:src="@drawable/check_icon"
-            app:tint="@color/green" />
+            app:tint="@color/green"
+            android:visibility="gone"/>
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edit_dob"
         android:layout_width="match_parent"
@@ -58,7 +70,8 @@
             android:layout_height="25dp"
             android:layout_gravity="end"
             android:src="@drawable/check_icon"
-            app:tint="@color/green" />
+            app:tint="@color/green"
+            android:visibility="gone"/>
 
         <TextView
         android:layout_width="match_parent"
@@ -73,6 +86,7 @@
         android:id="@+id/edit_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="phone"
         android:hint="@string/add_phone_no"/>
         <ImageView
             android:id="@+id/edit_phone_check"
@@ -80,6 +94,7 @@
             android:layout_height="25dp"
             android:layout_gravity="end"
             android:src="@drawable/check_icon"
-            app:tint="@color/green" />
+            app:tint="@color/green"
+            android:visibility="gone"/>
     </LinearLayout>
 </ScrollView>

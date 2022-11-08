@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GENIE</string>
+    <string name="app_name">Instagram</string>
     <string name="enter_your_registered_email">Enter your registered email</string>
     <string name="enter_your_password">Enter your password</string>
     <string name="enter_your_password_confirm">Enter your password confirm</string>
@@ -22,4 +22,8 @@
     <string name="add_caption">Add Caption</string>
     <string name="upload">Upload</string>
     <string name="caption">Caption</string>
+    <string name="add_your_comment">Add your Comment...</string>
+    <string name="post_by_user">post by user</string>
+    <string name="tap_to_chat">Tap to chat</string>
+    <string name="write_something">Write Something...</string>
 </resources>

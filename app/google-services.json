@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "93759634646",
-    "firebase_url": "https://genie-f0e7e-default-rtdb.firebaseio.com",
-    "project_id": "genie-f0e7e",
-    "storage_bucket": "genie-f0e7e.appspot.com"
+    "project_number": "448419254706",
+    "firebase_url": "https://instagram-df5b0-default-rtdb.firebaseio.com",
+    "project_id": "instagram-df5b0",
+    "storage_bucket": "instagram-df5b0.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:93759634646:android:4256df5d28d4eb733e1d77",
+        "mobilesdk_app_id": "1:448419254706:android:b03d89352d0f1ac16694ab",
         "android_client_info": {
-          "package_name": "com.genie"
+          "package_name": "com.instagram"
         }
       },
       "oauth_client": [
         {
-          "client_id": "93759634646-2le86qf25d2b1e11872fdovj6nc85pm6.apps.googleusercontent.com",
+          "client_id": "448419254706-vedcvkt5o37te6a1cu1n9erhp31a5mh7.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBqKmCLnPfzlV7hXWdLGBwl0ebZF1DMMAg"
+          "current_key": "AIzaSyCyFseIByBbpeOCfKVDggytFOUBls9m0Vk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "93759634646-2le86qf25d2b1e11872fdovj6nc85pm6.apps.googleusercontent.com",
+              "client_id": "448419254706-vedcvkt5o37te6a1cu1n9erhp31a5mh7.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

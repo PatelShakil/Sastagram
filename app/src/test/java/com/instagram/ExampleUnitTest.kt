@@ -1,4 +1,4 @@
-package com.genie
+package com.instagram
 
 import org.junit.Test
 

@@ -8,7 +8,7 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.genie"
+        applicationId "com.instagram"
         minSdk 21
         targetSdk 32
         versionCode 1
@@ -56,5 +56,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.google.firebase:firebase-database-ktx'
     implementation 'com.google.firebase:firebase-storage-ktx'
+    implementation 'com.google.firebase:firebase-firestore-ktx'
+    implementation 'com.google.firebase:firebase-messaging-ktx'
     implementation 'com.google.firebase:firebase-inappmessaging-display-ktx'
+    implementation 'com.firebaseui:firebase-ui-database:6.2.1'
 }

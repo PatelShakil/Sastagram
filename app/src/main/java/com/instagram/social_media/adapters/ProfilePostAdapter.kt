@@ -1,20 +1,13 @@
-package com.genie.social_media.adapters
+package com.instagram.social_media.adapters
 
 import android.content.Context
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.genie.R
-import com.genie.databinding.SampleSocialPostProfileBinding
-import com.genie.social_media.SocialMediaActivity
-import com.genie.social_media.fragments.PostViewFragment
-import com.genie.social_media.fragments.ProfileFragment
+import com.instagram.R
+import com.instagram.databinding.SampleSocialPostProfileBinding
 
 
 class ProfilePostAdapter: RecyclerView.Adapter<ProfilePostAdapter.ProfilePostViewHolder>{
@@ -45,6 +38,6 @@ class ProfilePostAdapter: RecyclerView.Adapter<ProfilePostAdapter.ProfilePostVie
     }
 
     override fun getItemCount(): Int {
-        return post_list?.size!!
+        return post_list.size
     }
 }

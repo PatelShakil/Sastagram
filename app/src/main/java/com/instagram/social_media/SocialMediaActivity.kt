@@ -1,13 +1,17 @@
-package com.genie.social_media
+package com.instagram.social_media
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.genie.R
-import com.genie.databinding.ActivitySocialMediaBinding
-import com.genie.social_media.fragments.*
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import com.instagram.R
+import com.instagram.databinding.ActivitySocialMediaBinding
+import com.instagram.social_media.fragments.*
+import java.util.*
 
-class SocialMediaActivity : AppCompatActivity() {
+class SocialMediaActivity : BaseActivity() {
     private lateinit var binding:ActivitySocialMediaBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +36,7 @@ class SocialMediaActivity : AppCompatActivity() {
                 }
                 R.id.social_media_chats -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_container, ChatsFragment(),"chats").addToBackStack("chats").commit()
+                        .replace(R.id.main_container, UsersFragment(),"chats").addToBackStack("chats").commit()
                 }
                 R.id.social_media_profile -> {
                     supportFragmentManager.beginTransaction()
@@ -91,15 +95,16 @@ class SocialMediaActivity : AppCompatActivity() {
 //        }
     }
 
+
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
     }
 
     override fun onBackPressed() {
-        if (supportFragmentManager.backStackEntryCount > 0) {
+        if (supportFragmentManager.backStackEntryCount > 1) {
             supportFragmentManager.popBackStack()
-        } else {
-            super.onBackPressed();
-        }    }
+        } else
+            finishAffinity()
+        }
 }

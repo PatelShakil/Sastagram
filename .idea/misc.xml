@@ -15,6 +15,30 @@
         <entry key="..\:/Start_up_Projects/Genie/app/src/main/res/layout/sample_social_post.xml" value="0.22" />
         <entry key="..\:/Start_up_Projects/Genie/app/src/main/res/layout/sample_social_post_profile.xml" value="0.2234375" />
         <entry key="..\:/Start_up_Projects/Genie/app/src/main/res/menu/social_media_bottom_menu.xml" value="0.22447916666666667" />
+        <entry key="..\:/Start_up_Projects/Instagram/Genie/app/src/main/res/drawable/back_icon.xml" value="0.1" />
+        <entry key="..\:/Start_up_Projects/Instagram/Genie/app/src/main/res/drawable/follow_btn_background.xml" value="0.163" />
+        <entry key="..\:/Start_up_Projects/Instagram/Genie/app/src/main/res/drawable/following_btn_background.xml" value="0.163" />
+        <entry key="..\:/Start_up_Projects/Instagram/Genie/app/src/main/res/drawable/heart.xml" value="0.1605" />
+        <entry key="..\:/Start_up_Projects/Instagram/Genie/app/src/main/res/drawable/receive_message_background.xml" value="0.163" />
+        <entry key="..\:/Start_up_Projects/Instagram/Genie/app/src/main/res/drawable/sent_message_background.xml" value="0.163" />
+        <entry key="..\:/Start_up_Projects/Instagram/Genie/app/src/main/res/layout-v28/activity_chat.xml" value="0.1" />
+        <entry key="..\:/Start_up_Projects/Instagram/Genie/app/src/main/res/layout-v28/sample_conversion_user.xml" value="0.22447916666666667" />
+        <entry key="..\:/Start_up_Projects/Instagram/Genie/app/src/main/res/layout/activity_account_creation.xml" value="0.22447916666666667" />
+        <entry key="..\:/Start_up_Projects/Instagram/Genie/app/src/main/res/layout/activity_chat.xml" value="0.22447916666666667" />
+        <entry key="..\:/Start_up_Projects/Instagram/Genie/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Start_up_Projects/Instagram/Genie/app/src/main/res/layout/activity_social_media.xml" value="0.22447916666666667" />
+        <entry key="..\:/Start_up_Projects/Instagram/Genie/app/src/main/res/layout/fragment_chats.xml" value="0.22447916666666667" />
+        <entry key="..\:/Start_up_Projects/Instagram/Genie/app/src/main/res/layout/fragment_edit_profile.xml" value="0.1" />
+        <entry key="..\:/Start_up_Projects/Instagram/Genie/app/src/main/res/layout/fragment_home.xml" value="0.22447916666666667" />
+        <entry key="..\:/Start_up_Projects/Instagram/Genie/app/src/main/res/layout/fragment_post_view.xml" value="0.22447916666666667" />
+        <entry key="..\:/Start_up_Projects/Instagram/Genie/app/src/main/res/layout/fragment_profile.xml" value="0.22447916666666667" />
+        <entry key="..\:/Start_up_Projects/Instagram/Genie/app/src/main/res/layout/fragment_users.xml" value="0.2234375" />
+        <entry key="..\:/Start_up_Projects/Instagram/Genie/app/src/main/res/layout/receiver_sample_message.xml" value="0.22447916666666667" />
+        <entry key="..\:/Start_up_Projects/Instagram/Genie/app/src/main/res/layout/sample_message.xml" value="0.25" />
+        <entry key="..\:/Start_up_Projects/Instagram/Genie/app/src/main/res/layout/sample_social_post.xml" value="0.22447916666666667" />
+        <entry key="..\:/Start_up_Projects/Instagram/Genie/app/src/main/res/layout/sample_social_post_profile.xml" value="0.22447916666666667" />
+        <entry key="..\:/Start_up_Projects/Instagram/Genie/app/src/main/res/layout/sample_social_user.xml" value="0.22447916666666667" />
+        <entry key="..\:/Start_up_Projects/Instagram/Genie/app/src/main/res/layout/sample_user_active.xml" value="0.67" />
       </map>
     </option>
   </component>
