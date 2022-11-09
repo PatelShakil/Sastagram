@@ -26,4 +26,5 @@
     <string name="post_by_user">post by user</string>
     <string name="tap_to_chat">Tap to chat</string>
     <string name="write_something">Write Something...</string>
+    <string name="online">Online</string>
 </resources>

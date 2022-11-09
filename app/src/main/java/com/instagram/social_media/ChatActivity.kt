@@ -1,6 +1,9 @@
 package com.instagram.social_media
 
 import android.os.Bundle
+import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.google.android.gms.tasks.OnCompleteListener
@@ -57,16 +60,26 @@ class ChatActivity : BaseActivity()  {
         }
         db.collection(Constants().KEY_COLLECTION_USERS)
             .document(receiverid)
-            .get()
-            .addOnSuccessListener {
-                if (it.exists()) {
-                    binding.receiverName.text = it["name"].toString()
-                    Glide.with(applicationContext)
-                        .load(it["profile_pic"])
-                        .placeholder(R.drawable.profile_icon)
-                        .into(binding.receiverProfile)
-                    rname = it["name"].toString()
-                    rimage = it["profile_pic"].toString()
+            .addSnapshotListener { value, error ->
+                if(error != null)
+                    return@addSnapshotListener
+                if (value != null) {
+                    if (value.exists()) {
+                        binding.receiverName.text = value["name"].toString()
+                        Glide.with(applicationContext)
+                            .load(value["profile_pic"])
+                            .placeholder(R.drawable.profile_icon)
+                            .into(binding.receiverProfile)
+                        rname = value["name"].toString()
+                        rimage = value["profile_pic"].toString()
+                        if (Integer.parseInt(value["status"].toString()) == 1) {
+                            binding.userStatus.visibility = View.VISIBLE
+                            var anim = AnimationUtils.loadAnimation(this, R.anim.slide_down_anim)
+                            binding.userStatus.animation = anim
+                        } else {
+                            binding.userStatus.visibility = View.GONE
+                        }
+                    }
                 }
             }
         listmessages()

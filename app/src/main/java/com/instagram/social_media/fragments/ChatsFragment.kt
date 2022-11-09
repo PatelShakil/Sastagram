@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import com.instagram.R
 import androidx.fragment.app.Fragment
@@ -46,6 +47,8 @@ class ChatsFragment : Fragment() {
         storage = FirebaseStorage.getInstance()
         db = FirebaseFirestore.getInstance()
         users_list = ArrayList<UserModel>()
+        var anim = AnimationUtils.loadAnimation(binding.chatsFragment.context,R.anim.slide_down_anim)
+        binding.chatsFragment.animation = anim
         db.collection(Constants().KEY_COLLECTION_USERS)
             .whereNotEqualTo("uid", auth.uid.toString())
             .get()

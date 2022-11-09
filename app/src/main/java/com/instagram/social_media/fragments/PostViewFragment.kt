@@ -33,8 +33,11 @@ class PostViewFragment : Fragment() {
                         post_list.clear()
                         if (snapshot.exists()){
                             for (snapshot1 in snapshot.children){
-                                if (snapshot1.child("post_url").value == bundle.getString("post_url"))
-                                    post_list.add(snapshot1.getValue(PostModel::class.java)!!)
+                                if (snapshot1.child("post_url").value == bundle.getString("post_url")) {
+                                    var post = snapshot1.getValue(PostModel::class.java)!!
+                                    post.post_id = snapshot1.key.toString()
+                                    post_list.add(post)
+                                }
                             }
                             post_adapter.notifyDataSetChanged()
                         }

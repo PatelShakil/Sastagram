@@ -10,7 +10,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/green"/>
+        android:background="@drawable/follow_btn_background"/>
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/chat_toolbar"
         android:layout_width="match_parent"
@@ -24,7 +24,10 @@
             android:layout_margin="1dp"
             android:elevation="20dp"
             app:cardCornerRadius="15dp">
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -34,8 +37,7 @@
                     android:id="@+id/chat_back_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/back_icon"
-                    android:background="@color/white"
+                    android:background="@drawable/back_icon"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/receiver_profile"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -52,6 +54,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <LinearLayout
+                    android:id="@+id/linearlayout"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginStart="5dp"
@@ -70,20 +73,25 @@
                         android:textStyle="bold"
                         app:layout_constraintStart_toEndOf="@+id/profile"
                         app:layout_constraintTop_toTopOf="@+id/profile" />
-
-                    <TextView
-                        android:id="@+id/active_status"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="@string/tap_to_chat"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        app:layout_constraintStart_toStartOf="@+id/username"
-                        app:layout_constraintTop_toBottomOf="@+id/username" />
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/online"
+        android:id="@+id/user_status"
+        android:background="@color/green"
+        android:visibility="gone"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:fontFamily="@font/tajawal_medium"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/linearlayout"
+        />
+</LinearLayout>
         </androidx.cardview.widget.CardView>
     </androidx.appcompat.widget.Toolbar>
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/messages_rv"
@@ -127,9 +135,9 @@
 
             <ImageButton
                 android:id="@+id/msg_send_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/send_icon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/send_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

@@ -33,7 +33,7 @@ class Constants {
         var pheight = bitmap.height
         var pbitmap = Bitmap.createScaledBitmap(bitmap,pwidth,pheight,false)
         var byteArrayOutputStream = ByteArrayOutputStream()
-        pbitmap.compress(Bitmap.CompressFormat.PNG,80,byteArrayOutputStream)
+        pbitmap.compress(Bitmap.CompressFormat.JPEG,80,byteArrayOutputStream)
         var bytes=byteArrayOutputStream.toByteArray()
         return Base64.encodeToString(bytes,Base64.DEFAULT)
     }

@@ -31,6 +31,7 @@ class SocialMediaActivity : BaseActivity() {
                         .replace(R.id.main_container, SearchFragment(),"search").addToBackStack("search").commit()
                 }
                 R.id.social_media_home -> {
+                    var fragment=HomeFragment()
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.main_container, HomeFragment(),"home").addToBackStack("home").commit()
                 }

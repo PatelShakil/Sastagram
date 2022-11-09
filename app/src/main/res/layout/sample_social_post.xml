@@ -59,7 +59,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:cardCornerRadius="10dp"
         android:layout_marginHorizontal="2dp"
         android:backgroundTint="@color/white"
@@ -69,12 +69,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+            <androidx.media3.ui.PlayerView
+                android:id="@+id/user_post_vid"
+                android:layout_width="match_parent"
+                android:layout_height="600dp"
+
+                app:use_controller="true" />
         <ImageView
             android:id="@+id/user_post"
             android:layout_width="match_parent"
             android:layout_height="280dp"
             android:maxHeight="280dp"
             android:scaleType="centerCrop"
+            android:visibility="gone"
             android:contentDescription="@string/post_by_user"
             android:src="@drawable/image_icon"/>
             <TextView

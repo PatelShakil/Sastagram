@@ -4,7 +4,6 @@
     android:layout_height="150dp"
     android:minHeight="150dp"
     android:minWidth="130dp"
-    android:src="@drawable/logo"
     android:scaleType="fitXY"
     android:id="@+id/post_uploaded"
     android:layout_margin="2dp">

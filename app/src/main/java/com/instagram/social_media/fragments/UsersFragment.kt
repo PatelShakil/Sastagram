@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentChange
@@ -39,6 +40,8 @@ class UsersFragment : Fragment() {
         conadapter = RecentConversionAdapter(conversions)
         active_adapter = ActiveUsersAdapter(context?.applicationContext!!,active_users)
         binding.conUsers.adapter = conadapter
+        var anim = AnimationUtils.loadAnimation(binding.usersFragment.context,R.anim.slide_down_anim)
+        binding.usersFragment.animation = anim
         binding.addNewChatUsers.setOnClickListener {
             parentFragmentManager.beginTransaction().replace(R.id.main_container,ChatsFragment(),"new_users").addToBackStack("new_users").commit()
         }

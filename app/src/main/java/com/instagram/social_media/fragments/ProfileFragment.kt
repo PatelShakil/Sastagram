@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.media3.common.util.Util
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.firebase.ui.database.FirebaseRecyclerAdapter
@@ -72,21 +73,27 @@ class ProfileFragment : Fragment() {
                         .inflate(R.layout.sample_social_post_profile, parent, false)
                 )
             }
-
             override fun onBindViewHolder(
                 holder: ProfilePostViewHolder,
                 position: Int,
-                model: PostModel
+                post: PostModel
             ) {
+                if (post.post_url.contains("https://")) {
+                    holder.binding.postUploaded.setBackgroundResource(R.drawable.video_file_icon)
+                }else {
                     holder.binding.postUploaded.visibility = View.VISIBLE
-                    holder.binding.postUploaded.setImageBitmap(Constants().decodeImage(model.post_url))
-                    holder.binding.postUploaded.setOnClickListener {
-                        var fg = PostViewFragment()
-                        var bundle = Bundle()
-                        bundle.putString("post_url",model.post_url)
-                        fg.arguments = bundle
-                        parentFragmentManager.beginTransaction().replace(R.id.main_container,fg,"post_view").addToBackStack("post_view").commit()
-                    }
+                    holder.binding.postUploaded.setImageBitmap(Constants().decodeImage(post.post_url))
+                }
+//                    holder.binding.postUploaded.visibility = View.VISIBLE
+//                   holder.binding.postUploaded.setImageBitmap(Constants().decodeImage(model.post_url))
+                   holder.binding.postUploaded.setOnClickListener {
+                       Toast.makeText(context,"oops... This feature currently disable",Toast.LENGTH_SHORT).show()
+//                       var fg = PostViewFragment()
+//                       var bundle = Bundle()
+//                       bundle.putString("post_url",post.post_url)
+//                       fg.arguments = bundle
+//                       parentFragmentManager.beginTransaction().replace(R.id.main_container,fg,"post_view").addToBackStack("post_view").commit()
+                   }
             }
         }
         binding.uploadedPostRv.adapter = adapter
