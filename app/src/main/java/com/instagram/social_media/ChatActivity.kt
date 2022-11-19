@@ -2,9 +2,7 @@ package com.instagram.social_media
 
 import android.os.Bundle
 import android.view.View
-import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
@@ -144,10 +142,10 @@ class ChatActivity : BaseActivity()  {
             }
     }
     fun updateConversion(message:String){
-            var df = db.collection(Constants().KEY_COLLECTION_CONVERSIONS)
-                .document(conversionid!!)
-                df.update(Constants().KEY_LASTMESSAGE,message,
-                Constants().KEY_TIMESTAMP,Date())
+                var df = db.collection(Constants().KEY_COLLECTION_CONVERSIONS)
+                        .document(conversionid!!)
+                    df.update(Constants().KEY_LASTMESSAGE,message,
+                    Constants().KEY_TIMESTAMP,Date())
 
     }
     fun checkConversion(){

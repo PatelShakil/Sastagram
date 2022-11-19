@@ -34,9 +34,9 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
-
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/post_user_layout">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/user_profile"
@@ -65,35 +65,47 @@
         android:backgroundTint="@color/white"
         android:layout_margin="1dp"
         android:elevation="15dp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <androidx.media3.ui.PlayerView
-                android:id="@+id/user_post_vid"
-                android:layout_width="match_parent"
-                android:layout_height="600dp"
 
-                app:use_controller="true" />
-        <ImageView
-            android:id="@+id/user_post"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="280dp"
-            android:maxHeight="280dp"
-            android:scaleType="centerCrop"
-            android:visibility="gone"
-            android:contentDescription="@string/post_by_user"
-            android:src="@drawable/image_icon"/>
-            <TextView
-                android:id="@+id/user_post_caption"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/caption"
-                android:layout_marginHorizontal="5dp"
-                android:textSize="18sp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/tajawal_medium"/>
-        </LinearLayout>
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.media3.ui.PlayerView
+                    android:id="@+id/user_post_vid"
+                    android:layout_width="match_parent"
+                    android:layout_height="650dp"/>
+
+                <ImageView
+                    android:id="@+id/user_post_vid_thumb"
+                    android:layout_width="match_parent"
+                    android:layout_height="600dp" />
+
+                <ImageView
+                    android:id="@+id/user_post"
+                    android:layout_width="match_parent"
+                    android:layout_height="280dp"
+                    android:contentDescription="@string/post_by_user"
+                    android:maxHeight="280dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/image_icon"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/user_post_caption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:fontFamily="@font/tajawal_medium"
+                    android:text="@string/caption"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

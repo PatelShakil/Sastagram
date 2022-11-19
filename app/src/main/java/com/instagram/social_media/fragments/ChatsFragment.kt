@@ -1,32 +1,20 @@
 package com.instagram.social_media.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import android.widget.Toast
 import com.instagram.R
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.firebase.ui.database.FirebaseRecyclerAdapter
-import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.storage.FirebaseStorage
 import com.instagram.account.Constants
-import com.instagram.account.Follower
 import com.instagram.account.UserModel
 import com.instagram.databinding.FragmentChatsBinding
-import com.instagram.databinding.SampleSocialUserBinding
-import com.instagram.social_media.ChatActivity
-import com.instagram.social_media.adapters.ActiveUsersAdapter
 import com.instagram.social_media.adapters.ChatUsersAdapter
-import java.util.*
 import kotlin.collections.ArrayList
 
 

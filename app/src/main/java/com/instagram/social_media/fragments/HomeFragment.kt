@@ -1,14 +1,11 @@
 package com.instagram.social_media.fragments
 
-import android.app.Application
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import android.widget.AbsListView
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
@@ -16,13 +13,11 @@ import androidx.media3.common.MediaItem
 import androidx.media3.common.util.Util
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.PlayerView
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
-import com.instagram.databinding.FragmentHomeBinding
-import com.instagram.social_media.adapters.PostAdapter
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -30,9 +25,10 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.instagram.R
 import com.instagram.account.Constants
+import com.instagram.databinding.FragmentHomeBinding
+import com.instagram.social_media.adapters.PostAdapter
 import com.instagram.social_media.models.PostModel
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class HomeFragment : Fragment() {
@@ -106,11 +102,30 @@ class HomeFragment : Fragment() {
                 holder.binding.userPostCaption.text = post.post_caption
                 if (post.post_url.contains("https://")) {
                     try {
-                        if (Util.SDK_INT > 23) {
-                            initializePlayer(holder.itemView,post.post_url)
-                        }
+                        holder.binding.userPostVid.setShowBuffering(PlayerView.SHOW_BUFFERING_ALWAYS)
                         holder.binding.userPost.visibility = View.GONE
-                        holder.binding.userPostVid.visibility = View.VISIBLE
+                        holder.binding.userPostVid.visibility = View.GONE
+                        holder.binding.userPostVidThumb.visibility = View.VISIBLE
+                        holder.binding.userPostVidThumb.setOnClickListener {
+                            holder.binding.userPostVid.visibility = View.VISIBLE
+                            holder.binding.userPostVid.controllerShowTimeoutMs = 10
+                            holder.binding.userPostVidThumb.visibility = View.GONE
+                            if (Util.SDK_INT > 23) {
+                                initializePlayer(holder.itemView,post.post_url)
+                            }
+                        }
+                        holder.binding.userPostVid.setOnTouchListener { p0, p1 ->
+                            releasePlayer()
+                            holder.binding.userPost.visibility = View.GONE
+                            holder.binding.userPostVid.visibility = View.GONE
+                            holder.binding.userPostVidThumb.visibility = View.VISIBLE
+                            true
+                        }
+                        val requestOptions = RequestOptions()
+                        requestOptions.isMemoryCacheable
+                        Glide.with(context!!).setDefaultRequestOptions(requestOptions).load(post.post_url)
+                            .placeholder(R.drawable.video_file_icon)
+                            .into(holder.binding.userPostVidThumb)
                         holder.binding.userPostVid.dispatchWindowFocusChanged(true)
                         u = post.post_url
                         hol = holder.itemView
@@ -127,6 +142,7 @@ class HomeFragment : Fragment() {
                 }else {
                     holder.binding.userPost.visibility = View.VISIBLE
                     holder.binding.userPostVid.visibility = View.GONE
+                    holder.binding.userPostVidThumb.visibility = View.GONE
                     holder.binding.userPost.setImageBitmap(Constants().decodeImage(post.post_url))
                 }
                 db.collection(Constants().KEY_COLLECTION_USERS)
@@ -270,6 +286,13 @@ class HomeFragment : Fragment() {
                             override fun onCancelled(error: DatabaseError) {}
                         })
                 }
+                holder.binding.postUserLayout.setOnClickListener{
+                    var fragment = ViewUserProfileFragment()
+                    var bundle = Bundle()
+                    bundle.putString("uid",post.post_author)
+                    fragment.arguments = bundle
+                    parentFragmentManager.beginTransaction().replace(R.id.main_container,fragment).addToBackStack("view_user").commit()
+                }
             }
         }
         binding.feedPostRv.adapter = adapter_feed
@@ -333,6 +356,7 @@ class HomeFragment : Fragment() {
                 holder.findViewById<PlayerView>(R.id.user_post_vid).player = exoPlayer
                 exoPlayer.playWhenReady = playWhenReady
                 exoPlayer.seekTo(currentItem, playbackPosition)
+                exoPlayer.prepare()
             }
     }
     private fun releasePlayer() {

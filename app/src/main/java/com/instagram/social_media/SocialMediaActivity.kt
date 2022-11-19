@@ -12,7 +12,7 @@ import com.instagram.social_media.fragments.*
 import java.util.*
 
 class SocialMediaActivity : BaseActivity() {
-    private lateinit var binding:ActivitySocialMediaBinding
+    private lateinit var binding: ActivitySocialMediaBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySocialMediaBinding.inflate(layoutInflater)
@@ -22,16 +22,11 @@ class SocialMediaActivity : BaseActivity() {
         supportFragmentManager.beginTransaction().replace(R.id.main_container,HomeFragment(),"home").addToBackStack("home").commit()
         binding.navigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.social_media_live -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_container, LiveStreamFragment(),"live").addToBackStack("live").commit()
-                }
                 R.id.social_media_search -> {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.main_container, SearchFragment(),"search").addToBackStack("search").commit()
                 }
                 R.id.social_media_home -> {
-                    var fragment=HomeFragment()
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.main_container, HomeFragment(),"home").addToBackStack("home").commit()
                 }
@@ -57,7 +52,7 @@ class SocialMediaActivity : BaseActivity() {
 //            when (it.id){
 //                1 -> {
 //                    supportFragmentManager.beginTransaction()
-//                        .replace(R.id.main_container, LiveStreamFragment()).commit()
+//                        .replace(R.id.main_container, ViewUserProfileFragment()).commit()
 //                }
 //                2 -> {
 //                    supportFragmentManager.beginTransaction()

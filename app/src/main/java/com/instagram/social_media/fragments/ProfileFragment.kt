@@ -6,13 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.media3.common.util.Util
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.instagram.R
-import com.instagram.account.UserModel
 import com.instagram.databinding.FragmentProfileBinding
 import com.instagram.social_media.adapters.ProfilePostAdapter
 import com.google.firebase.auth.FirebaseAuth
@@ -78,8 +77,10 @@ class ProfileFragment : Fragment() {
                 position: Int,
                 post: PostModel
             ) {
-                if (post.post_url.contains("https://")) {
-                    holder.binding.postUploaded.setBackgroundResource(R.drawable.video_file_icon)
+                if(post.post_url.contains("https://")){
+                    val requestOptions = RequestOptions()
+                    requestOptions.isMemoryCacheable
+                    Glide.with(context?.applicationContext!!).setDefaultRequestOptions(requestOptions).load(post.post_url).into(holder.binding.postUploaded)
                 }else {
                     holder.binding.postUploaded.visibility = View.VISIBLE
                     holder.binding.postUploaded.setImageBitmap(Constants().decodeImage(post.post_url))

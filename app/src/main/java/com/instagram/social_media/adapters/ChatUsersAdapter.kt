@@ -1,6 +1,5 @@
 package com.instagram.social_media.adapters
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,7 +14,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 import com.instagram.R
 import com.instagram.account.Constants
 import com.instagram.account.UserModel
@@ -23,7 +21,6 @@ import com.instagram.databinding.SampleSocialUserBinding
 import com.instagram.social_media.ChatActivity
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
 
 class ChatUsersAdapter: RecyclerView.Adapter<ChatUsersAdapter.ChatUsersViewHolder>{
     var users_list:ArrayList<UserModel>

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.instagram.R
 import com.instagram.databinding.SampleSocialPostProfileBinding
 
@@ -32,7 +33,14 @@ class ProfilePostAdapter: RecyclerView.Adapter<ProfilePostAdapter.ProfilePostVie
     }
 
     override fun onBindViewHolder(holder: ProfilePostViewHolder, position: Int) {
-        Glide.with(context.applicationContext).load(post_list.get(position)).placeholder(R.drawable.image_icon).into(holder.binding.postUploaded)
+        if(post_list[position].contains("https://")){
+            val requestOptions = RequestOptions()
+            requestOptions.isMemoryCacheable
+            Glide.with(context).setDefaultRequestOptions(requestOptions).load(post_list[position]).placeholder(R.drawable.video_file_icon).into(holder.binding.postUploaded)
+        }else {
+            Glide.with(context.applicationContext).load(post_list.get(position))
+                .placeholder(R.drawable.image_icon).into(holder.binding.postUploaded)
+        }
         holder.binding.postUploaded.setOnClickListener {
         }
     }

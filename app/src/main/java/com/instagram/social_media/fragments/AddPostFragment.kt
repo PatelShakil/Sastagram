@@ -3,16 +3,13 @@ package com.instagram.social_media.fragments
 import android.app.ProgressDialog
 import android.content.Intent
 import android.graphics.BitmapFactory
-import android.media.AudioAttributes
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.MediaController
 import android.widget.Toast
-import android.widget.VideoView
 import androidx.fragment.app.Fragment
 import com.instagram.R
 import com.instagram.databinding.FragmentAddPostBinding

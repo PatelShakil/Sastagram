@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         android:text="receiver"
         android:layout_marginStart="5dp"
-        android:textSize="12sp"
+        android:autoLink="web"
+        android:textSize="15sp"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
         android:paddingTop="8dp"
@@ -36,7 +37,7 @@
         app:layout_constraintTop_toBottomOf="@+id/receiver_tv"
         app:layout_constraintLeft_toLeftOf="@+id/receiver_tv"
         android:text="12:57"
-        android:textSize="8sp"
+        android:textSize="10sp"
         android:fontFamily="@font/tajawal_medium"
         android:layout_marginEnd="5dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

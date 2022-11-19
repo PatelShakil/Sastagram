@@ -1,27 +1,15 @@
 package com.instagram.social_media.adapters
 
-import android.app.Application
 import android.content.Context
-import android.net.Uri
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.*
 import com.instagram.R
-import com.instagram.account.Constants
 import com.instagram.databinding.SampleSocialPostBinding
-import com.instagram.social_media.BaseActivity
-import com.instagram.social_media.SocialMediaActivity
 import com.instagram.social_media.models.PostModel
 import java.util.*
 
