@@ -11,8 +11,6 @@ class FirebaseUtils: Application() {
         FirebaseDatabase.getInstance().setPersistenceEnabled(true)
         FirebaseDatabase.getInstance().reference.keepSynced(true)
         FirebaseFirestore.getInstance().firestoreSettings.isPersistenceEnabled
-
-
     }
 
 }

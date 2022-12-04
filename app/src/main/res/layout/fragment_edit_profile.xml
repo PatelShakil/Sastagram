@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="280dp"
         android:src="@drawable/profile_icon"/>
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/edit_profile_pic_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
     android:layout_height="wrap_content"
     android:text="@string/app_name"
     android:textStyle="bold"/>
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
             android:id="@+id/edit_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
             android:src="@drawable/check_icon"
             app:tint="@color/green"
             android:visibility="gone"/>
-    <com.google.android.material.textfield.TextInputEditText
+    <EditText
         android:id="@+id/edit_bio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
             android:src="@drawable/check_icon"
             app:tint="@color/green"
             android:visibility="gone"/>
-    <com.google.android.material.textfield.TextInputEditText
+    <EditText
         android:id="@+id/edit_dob"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -82,7 +82,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/email"/>
-    <com.google.android.material.textfield.TextInputEditText
+    <EditText
         android:id="@+id/edit_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

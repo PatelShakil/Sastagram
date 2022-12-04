@@ -20,5 +20,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:backgroundTint="@color/white"
         app:menu="@menu/social_media_bottom_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>

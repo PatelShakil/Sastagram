@@ -75,7 +75,7 @@
         </LinearLayout>
     </ScrollView>
 
-    <com.google.android.material.textfield.TextInputEditText
+    <EditText
         android:id="@+id/post_caption"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -86,7 +86,7 @@
         app:layout_constraintBottom_toTopOf="@+id/post_upload_btn"
         tools:layout_editor_absoluteX="3dp" />
 
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/post_upload_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -1,8 +1,10 @@
 package com.instagram.account
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.View
 import android.widget.Toast
 import com.instagram.databinding.ActivityAccountCreationBinding
@@ -28,6 +30,15 @@ class AccountCreationActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance()
         storage = FirebaseStorage.getInstance()
         db = FirebaseFirestore.getInstance()
+        try{
+            if (intent.action == Intent.ACTION_SEND && intent.type == Intent.EXTRA_TEXT){
+                var msg = intent.getStringExtra(Intent.EXTRA_TEXT)
+                Toast.makeText(this,msg.toString(),Toast.LENGTH_SHORT).show()
+            }
+        }catch(e :Exception){
+            Toast.makeText(this,e.message.toString(),Toast.LENGTH_SHORT).show()
+        }
+
         if(auth.uid.toString() == auth.currentUser?.uid){
             startActivity(Intent(this,SocialMediaActivity::class.java))
         }

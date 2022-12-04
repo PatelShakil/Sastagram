@@ -15,6 +15,7 @@ import com.instagram.social_media.models.PostModel
 
 class PostViewFragment : Fragment() {
     lateinit var binding:FragmentPostViewBinding
+    lateinit var post_adapter :PostAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -23,22 +24,17 @@ class PostViewFragment : Fragment() {
         var bundle = this.arguments
         if (bundle!=null){
             var post_list = ArrayList<PostModel>()
-            var post_adapter = PostAdapter(context?.applicationContext!!,post_list)
+            post_adapter = PostAdapter(context?.applicationContext!!,post_list,parentFragmentManager)
             binding.postRv.adapter = post_adapter
             FirebaseDatabase.getInstance().reference
                 .child("social_media")
                 .child("posts")
-                .addValueEventListener(object: ValueEventListener{
+                .child(bundle.getString("post_id").toString())
+                .addListenerForSingleValueEvent(object: ValueEventListener{
                     override fun onDataChange(snapshot: DataSnapshot) {
                         post_list.clear()
                         if (snapshot.exists()){
-                            for (snapshot1 in snapshot.children){
-                                if (snapshot1.child("post_url").value == bundle.getString("post_url")) {
-                                    var post = snapshot1.getValue(PostModel::class.java)!!
-                                    post.post_id = snapshot1.key.toString()
-                                    post_list.add(post)
-                                }
-                            }
+                            post_list.add(snapshot.getValue(PostModel::class.java)!!)
                             post_adapter.notifyDataSetChanged()
                         }
                     }
@@ -50,5 +46,11 @@ class PostViewFragment : Fragment() {
                 })
         }
         return binding.root
+    }
+
+    override fun onStop() {
+        super.onStop()
+        if (post_adapter.play)
+            post_adapter.releasePlayer()
     }
 }

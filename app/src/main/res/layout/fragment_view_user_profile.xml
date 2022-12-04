@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:id="@+id/view_user_profile"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
     tools:context=".social_media.fragments.ViewUserProfileFragment">
     <LinearLayout
         app:layout_constraintLeft_toLeftOf="parent"
@@ -99,36 +100,48 @@
                 android:maxLines="5"
                 android:text="@string/bio"/>
         </LinearLayout>
-        <LinearLayout
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal">
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/view_follow_btn"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            app:cornerRadius="8dp"
-            android:text="@string/follow"
-            android:textAllCaps="false"
-            android:layout_marginHorizontal="5dp"/>
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/view_message_btn"
-                android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/view_follow_btn"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:text="@string/follow"
+                android:textAllCaps="false"
                 app:cornerRadius="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.5"
+                app:layout_constraintEnd_toStartOf="@+id/view_message_btn"/>
+
+            <Button
+                android:id="@+id/view_message_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/primary"
+                android:layout_marginHorizontal="5dp"
                 android:text="Message"
                 android:textAllCaps="false"
-                android:layout_marginHorizontal="5dp"/>
-
-        </LinearLayout>
-            <androidx.recyclerview.widget.RecyclerView
+                app:cornerRadius="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/view_follow_btn"
+                app:layout_constraintVertical_bias="0.5" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/uploaded_post_rv"
             android:layout_width="wrap_content"
-            android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/sample_social_post_profile"
+            android:layout_gravity="center_horizontal"
+            android:contentDescription="@string/app_name"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="3"/>
+            app:spanCount="3"
+            tools:listitem="@layout/sample_social_post_profile" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

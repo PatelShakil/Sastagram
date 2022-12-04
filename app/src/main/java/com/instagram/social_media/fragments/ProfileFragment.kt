@@ -20,6 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.instagram.account.Constants
 import com.instagram.databinding.SampleSocialPostProfileBinding
+import com.instagram.social_media.adapters.ProfileTabAdapter
 import com.instagram.social_media.models.PostModel
 
 class ProfileFragment : Fragment() {
@@ -37,8 +38,7 @@ class ProfileFragment : Fragment() {
         database = FirebaseDatabase.getInstance()
         storage = FirebaseStorage.getInstance()
         db = FirebaseFirestore.getInstance()
-        database.reference.keepSynced(true)
-                db.collection(Constants().KEY_COLLECTION_USERS)
+        db.collection(Constants().KEY_COLLECTION_USERS)
                     .document(auth.uid.toString())
                     .get()
                     .addOnSuccessListener {
@@ -57,48 +57,6 @@ class ProfileFragment : Fragment() {
         binding.addPost.setOnClickListener {
             parentFragmentManager.beginTransaction().replace(R.id.main_container,AddPostFragment(),"add_post").addToBackStack("add_post").commit()
         }
-        var post_list = ArrayList<String>()
-        var post_adapter = ProfilePostAdapter(binding.uploadedPostRv.context,post_list)
-
-        var query : Query = database.reference.child("social_media").child("posts")
-            .orderByChild("post_author").equalTo(auth.uid)
-        val options: FirebaseRecyclerOptions<PostModel> = FirebaseRecyclerOptions.Builder<PostModel>()
-            .setQuery(query,PostModel::class.java)
-            .build()
-        var adapter = object : FirebaseRecyclerAdapter<PostModel,ProfilePostViewHolder>(options){
-            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfilePostViewHolder {
-                return ProfilePostViewHolder(
-                    LayoutInflater.from(context?.applicationContext)
-                        .inflate(R.layout.sample_social_post_profile, parent, false)
-                )
-            }
-            override fun onBindViewHolder(
-                holder: ProfilePostViewHolder,
-                position: Int,
-                post: PostModel
-            ) {
-                if(post.post_url.contains("https://")){
-                    val requestOptions = RequestOptions()
-                    requestOptions.isMemoryCacheable
-                    Glide.with(context?.applicationContext!!).setDefaultRequestOptions(requestOptions).load(post.post_url).into(holder.binding.postUploaded)
-                }else {
-                    holder.binding.postUploaded.visibility = View.VISIBLE
-                    holder.binding.postUploaded.setImageBitmap(Constants().decodeImage(post.post_url))
-                }
-//                    holder.binding.postUploaded.visibility = View.VISIBLE
-//                   holder.binding.postUploaded.setImageBitmap(Constants().decodeImage(model.post_url))
-                   holder.binding.postUploaded.setOnClickListener {
-                       Toast.makeText(context,"oops... This feature currently disable",Toast.LENGTH_SHORT).show()
-//                       var fg = PostViewFragment()
-//                       var bundle = Bundle()
-//                       bundle.putString("post_url",post.post_url)
-//                       fg.arguments = bundle
-//                       parentFragmentManager.beginTransaction().replace(R.id.main_container,fg,"post_view").addToBackStack("post_view").commit()
-                   }
-            }
-        }
-        binding.uploadedPostRv.adapter = adapter
-        adapter.startListening()
         database.reference.child("users")
             .child(auth.uid.toString())
             .child(Constants().KEY_FOLLOWERS)
@@ -150,6 +108,11 @@ class ProfileFragment : Fragment() {
                 }
 
             })
+        binding.profileTab.setupWithViewPager(binding.profileViewpager)
+        var pager_adapter = ProfileTabAdapter(childFragmentManager)
+        pager_adapter.addFragment(PostFragment(),"post")
+        pager_adapter.addFragment(SavedFragment(),"saved")
+        binding.profileViewpager.adapter = pager_adapter
         return binding.root
     }
     class ProfilePostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){

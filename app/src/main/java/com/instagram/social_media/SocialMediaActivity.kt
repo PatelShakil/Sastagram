@@ -1,6 +1,8 @@
 package com.instagram.social_media
 
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -38,6 +40,11 @@ class SocialMediaActivity : BaseActivity() {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.main_container, ProfileFragment(),"profile").addToBackStack("profile").commit()
                 }
+            }
+            var flist = supportFragmentManager.fragments
+            for (i in flist) {
+                if (i is ViewUserProfileFragment || i is ChatsFragment || i is EditProfileFragment || i is PostViewFragment)
+                    binding.navigation.visibility = View.GONE
             }
             true
         }
@@ -90,7 +97,6 @@ class SocialMediaActivity : BaseActivity() {
 //            binding.navigation.selectedItemId = R.id.social_media_search
 //        }
     }
-
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()

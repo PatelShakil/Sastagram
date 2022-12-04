@@ -16,6 +16,7 @@ import com.instagram.R
 import com.instagram.account.Constants
 import com.instagram.databinding.ActivityChatBinding
 import com.instagram.social_media.adapters.ChatAdapter
+import com.instagram.social_media.fragments.ViewUserProfileFragment
 import com.instagram.social_media.models.ChatModel
 import java.text.SimpleDateFormat
 import java.util.*
@@ -49,6 +50,13 @@ class ChatActivity : BaseActivity()  {
         msgAdapter = ChatAdapter(msglist,auth.uid.toString())
         receiverid = intent.extras?.getString("uid").toString()
         senderInfo()
+        binding.receiverProfile.setOnClickListener {
+            var fragment = ViewUserProfileFragment()
+            var bundle = Bundle()
+            bundle.putString("uid",receiverid)
+            fragment.arguments = bundle
+            supportFragmentManager.beginTransaction().replace(R.id.chat_container,fragment,"view_user").addToBackStack("view_user").commit()
+        }
         binding.msgSendBtn.setOnClickListener {
             if (binding.msgTextEt.text?.trim().toString().isNotEmpty())
                 sendMessage()
@@ -143,9 +151,9 @@ class ChatActivity : BaseActivity()  {
     }
     fun updateConversion(message:String){
                 var df = db.collection(Constants().KEY_COLLECTION_CONVERSIONS)
-                        .document(conversionid!!)
-                    df.update(Constants().KEY_LASTMESSAGE,message,
-                    Constants().KEY_TIMESTAMP,Date())
+                            .document(conversionid!!)
+                            df.update(Constants().KEY_LASTMESSAGE,message,
+                            Constants().KEY_TIMESTAMP,Date())
 
     }
     fun checkConversion(){

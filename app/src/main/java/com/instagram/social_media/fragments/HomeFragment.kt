@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -26,6 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.instagram.R
 import com.instagram.account.Constants
 import com.instagram.databinding.FragmentHomeBinding
+import com.instagram.social_media.SocialMediaActivity
 import com.instagram.social_media.adapters.PostAdapter
 import com.instagram.social_media.models.PostModel
 import java.util.*
@@ -43,6 +45,7 @@ class HomeFragment : Fragment() {
     private var playbackPosition = 0L
     lateinit var hol :View
     lateinit var u:String
+    var play = false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -50,7 +53,7 @@ class HomeFragment : Fragment() {
         database = FirebaseDatabase.getInstance()
         post_list = ArrayList()
         post_list.clear()
-        adapter = PostAdapter(context?.applicationContext!!,post_list)
+        adapter = PostAdapter(context?.applicationContext!!,post_list,parentFragmentManager)
         var anim = AnimationUtils.loadAnimation(binding.homeFragment.context,R.anim.slide_down_anim)
         binding.homeFragment.animation = anim
         binding.swipe.setOnRefreshListener {
@@ -111,6 +114,7 @@ class HomeFragment : Fragment() {
                             holder.binding.userPostVid.controllerShowTimeoutMs = 10
                             holder.binding.userPostVidThumb.visibility = View.GONE
                             if (Util.SDK_INT > 23) {
+                                releasePlayer()
                                 initializePlayer(holder.itemView,post.post_url)
                             }
                         }
@@ -152,10 +156,13 @@ class HomeFragment : Fragment() {
                         if (it.exists()) {
                             holder.binding.userName.text = it["name"].toString()
                             post_author_name = it["name"].toString()
-                            Glide.with(context?.applicationContext!!)
-                                .load(it["profile_pic"])
-                                .placeholder(R.drawable.profile_icon)
-                                .into(holder.binding.userProfile)
+                            try{
+                                Glide.with(context?.applicationContext!!)
+                                    .load(it["profile_pic"])
+                                    .placeholder(R.drawable.profile_icon)
+                                    .into(holder.binding.userProfile)
+                            }catch(e :Exception){                            }
+
                         }
                     }
                 db.collection(Constants().KEY_COLLECTION_USERS)
@@ -164,10 +171,12 @@ class HomeFragment : Fragment() {
                     .addOnSuccessListener {
                         if (it.exists()) {
                             curren_user_name = it["name"].toString()
-                            Glide.with(context?.applicationContext!!)
-                                .load(it["profile_pic"])
-                                .placeholder(R.drawable.profile_icon)
-                                .into(holder.binding.currentUserProfile)
+                            try {
+                                Glide.with(context?.applicationContext!!)
+                                    .load(it["profile_pic"])
+                                    .placeholder(R.drawable.profile_icon)
+                                    .into(holder.binding.currentUserProfile)
+                            }catch (e : Exception){}
                         }
                     }
                 holder.binding.postLikeCount.text = post.post_like.toString()
@@ -291,6 +300,7 @@ class HomeFragment : Fragment() {
                     var bundle = Bundle()
                     bundle.putString("uid",post.post_author)
                     fragment.arguments = bundle
+//                    (BottomNavigationView(context?.applicationContext!!)).findViewById<BottomNavigationView>(R.id.navigation).visibility = View.GONE
                     parentFragmentManager.beginTransaction().replace(R.id.main_container,fragment).addToBackStack("view_user").commit()
                 }
             }
@@ -354,17 +364,20 @@ class HomeFragment : Fragment() {
                 val mediaItem = MediaItem.fromUri(Uri.parse(url))
                 exoPlayer.setMediaItem(mediaItem)
                 holder.findViewById<PlayerView>(R.id.user_post_vid).player = exoPlayer
-                exoPlayer.playWhenReady = playWhenReady
-                exoPlayer.seekTo(currentItem, playbackPosition)
+//                exoPlayer.playWhenReady = playWhenReady
+//                exoPlayer.seekTo(currentItem, playbackPosition)
                 exoPlayer.prepare()
+                exoPlayer.play()
+                play = true
             }
     }
     private fun releasePlayer() {
         player?.let { exoPlayer ->
-            playbackPosition = exoPlayer.currentPosition
-            currentItem = exoPlayer.currentMediaItemIndex
-            playWhenReady = exoPlayer.playWhenReady
+//            playbackPosition = exoPlayer.currentPosition
+//            currentItem = exoPlayer.currentMediaItemIndex
+//            playWhenReady = exoPlayer.playWhenReady
             exoPlayer.release()
+            play = false
         }
         player = null
     }

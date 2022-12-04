@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Genie" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.Genie" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryVariant">@color/primary</item>
@@ -11,7 +11,7 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" >@color/primary</item>
-<!--        Text color-->
+        <!-- Text color -->
         <item name="android:textColor">@color/black</item>
         <!-- Customize your theme here. -->
     </style>

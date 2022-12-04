@@ -1,23 +1,30 @@
 package com.instagram.social_media.adapters
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.instagram.R
+import com.instagram.account.Constants
 import com.instagram.databinding.SampleSocialPostProfileBinding
+import com.instagram.social_media.fragments.PostViewFragment
+import com.instagram.social_media.models.PostModel
 
 
 class ProfilePostAdapter: RecyclerView.Adapter<ProfilePostAdapter.ProfilePostViewHolder>{
     var context:Context
-    var post_list:ArrayList<String>
+    var post_list:ArrayList<PostModel>
+    var fm:FragmentManager
 
-    constructor(context: Context, post_list: ArrayList<String>) : super() {
+    constructor(context: Context, post_list: ArrayList<PostModel>, fm:FragmentManager) : super() {
         this.context = context
         this.post_list = post_list
+        this.fm = fm
     }
 
     class ProfilePostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
@@ -28,20 +35,24 @@ class ProfilePostAdapter: RecyclerView.Adapter<ProfilePostAdapter.ProfilePostVie
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfilePostViewHolder {
-        var view = LayoutInflater.from(context).inflate(R.layout.sample_social_post_profile,null,false)
+        var view = LayoutInflater.from(context).inflate(R.layout.sample_social_post_profile,parent,false)
         return ProfilePostViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ProfilePostViewHolder, position: Int) {
-        if(post_list[position].contains("https://")){
+        if(post_list[position].post_url.contains("https://")){
             val requestOptions = RequestOptions()
             requestOptions.isMemoryCacheable
-            Glide.with(context).setDefaultRequestOptions(requestOptions).load(post_list[position]).placeholder(R.drawable.video_file_icon).into(holder.binding.postUploaded)
+            Glide.with(context).setDefaultRequestOptions(requestOptions).load(post_list[position].post_url).placeholder(R.drawable.video_file_icon).into(holder.binding.postUploaded)
         }else {
-            Glide.with(context.applicationContext).load(post_list.get(position))
-                .placeholder(R.drawable.image_icon).into(holder.binding.postUploaded)
+            holder.binding.postUploaded.setImageBitmap(Constants().decodeImage(post_list[position].post_url))
         }
         holder.binding.postUploaded.setOnClickListener {
+            var fragment = PostViewFragment()
+            var bundle = Bundle()
+            bundle.putString("post_id",post_list[position].post_id)
+            fragment.arguments = bundle
+            fm.beginTransaction().replace(R.id.main_container,fragment,"post_view").addToBackStack("post_view").commit()
         }
     }
 
